@@ -26,3 +26,22 @@ Map.setCenter(-112.8598, 36.2841, 9); // Center on the Grand Canyon.
 Map.addLayer(image);
 //addLayer() method to add an image to the map display in the Code Editor on top of your map.
 
+//seeing the features of the image
+print("SRTM image" , image)
+
+
+// costomizing the layers
+// streatching and costemizing the layers
+Map.addLayer(image, {min: -32768, max: 32767}, 'custom visualization');
+
+// adding colors to costumized layer
+Map.addLayer(image, {min: 0, max: 32767,palette: ['blue', 'green', 'red']}, 'custom visualization');
+
+
+
+//////// important steps
+//1 importing the image by ee.image(id)
+//2 checking the features of the image print('title u choose' , name of the image)
+//3 choosing the location on map by Map.setCenter(lon,lat,zoom)
+//4 adding the layer of image to the map by Map.addLayer(name of image)
+//5 costemizing the colors by map.addLayer(name of image,{min,max,palette:[]},name for the costomize layer)
