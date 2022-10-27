@@ -49,12 +49,23 @@ var meanDictionary = strm.reduceRegion(
 // 3
 var meanDictionary = strm.reduceRegion(
     {
-        reducer : ee.Reducer.mean(),
-        geometry : polygon,
-        scale : 90
+        reducer : ee.Reducer.mean(),// the reducer parameter specifies the type of statistic to compute 
+        geometry : polygon, // the geometry parameter specifies the region in which to compute the statistic
+        scale : 90 ,//The scale parameter is the pixel size in meters to use "specify it from zoom level of the image"
+        bestEffort : true // it make sure just the area of interest is calculated
 
     }
 );
+// note for discovering the native resolution of an image with:
+var scale = srtm.projection().nominalScale();
+print('SRTM scale in meters', scale);
+//If you specify a scale smaller than the native resolution,
+// Earth Engine will happily resample the input image using nearest neighbor,
+// then include all those smaller pixels in the computation.
+// If you set the scale to be larger,
+// Earth Engine will use input pixels 
+//from an aggregated version of the input (i.e. get pixels
+// from a higher level of the image pyramid)
 
  //4
  var mean = meanDictionary.get("elevation"); // getting the mean value for variable elevation
